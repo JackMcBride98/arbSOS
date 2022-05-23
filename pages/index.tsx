@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import TreeSvg from "../components/TreeSvg";
+import TreeSvg from "../public/images/TreeSvg.svg";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import stockTreeImage from "../public/images/stockTreeSurgeon.jpg";
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
       <header className="w-full flex px-2 justify-between bg-[#00ff8c]">
         <div className="flex">
-          <TreeSvg />
+          <TreeSvg className="w-12 h-12" />
           <h1 className="text-3xl p-2 font-semibold">ArbSOS</h1>
         </div>
         <DropdownMenu.Root>
