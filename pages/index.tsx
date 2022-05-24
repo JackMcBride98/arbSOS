@@ -5,8 +5,15 @@ import TreeSvg from "../public/images/TreeSvg.svg";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import background from "../public/images/treeSurgeon.jpg";
+import { useState, useEffect } from "react";
 
 const Home: NextPage = () => {
+  const [openDropwdown, setOpenDropdown] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("scroll", () => setOpenDropdown(false));
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-dull w-full">
       <Head>
@@ -15,52 +22,59 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/TreeSvg.svg" />
       </Head>
 
-      <header className="w-full flex px-2 justify-between bg-green max-w-screen">
+      <header className="w-full flex px-2 justify-between bg-green max-w-screen fixed z-50">
         <div className="flex">
           <TreeSvg className="w-12 h-12" />
           <h1 className="text-3xl p-2 font-semibold">ArbSOS</h1>
         </div>
-        <DropdownMenu.Root>
+        <DropdownMenu.Root
+          modal={false}
+          open={openDropwdown}
+          onOpenChange={() => setOpenDropdown(!openDropwdown)}
+        >
           <DropdownMenu.Trigger>
             <HamburgerMenuIcon className="w-8 h-8" />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             align="start"
-            className="border font-medium lg:text-xl rounded-md bg-green"
+            className="border-2 border-darkGreen font-medium lg:text-xl rounded-md bg-green"
           >
             <DropdownMenu.Arrow
               className="fill-green w-6 h-4 -mt-1"
               offset={10}
             ></DropdownMenu.Arrow>
             <DropdownMenu.Item className="p-2 lg:px-4">About</DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 lg:px-4 border-t border-dull">
+            <DropdownMenu.Item className="p-2 lg:px-4 border-t-2 border-darkGreen">
               Services
             </DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 lg:px-4 border-t border-dull">
+            <DropdownMenu.Item className="p-2 lg:px-4 border-t-2 border-darkGreen">
               Contact
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </header>
 
-      <main
-        className="bg-scroll bg-contain bg-no-repeat w-full"
-        style={{ backgroundImage: `url(${background.src})` }}
-      >
-        <section className="w-full">
-          <div className=" flex flex-col w-full text-center">
-            <div className="flex items-center w-full justify-center my-[3%]">
+      <main className="w-full flex flex-col items-center">
+        <div
+          className="bg-cover bg-no-repeat bg-fixed bg-center w-full min-h-screen"
+          style={{ backgroundImage: `url(${background.src})` }}
+        ></div>
+        <section className="bg-black/30 w-[90%] p-4 lg:w-3/4 absolute top-8 mt-16 z-10 border-2 border-darkGreen rounded-lg ">
+          <div className="flex flex-col w-full text-center space-y-4">
+            <div className="flex items-center w-full justify-center">
               <TreeSvg className="w-16 h-16  md:w-32 md:h-32  fill-green" />
               <p className="text-green text-6xl md:text-9xl text-center">
                 ArbSOS
               </p>
             </div>
-            <p className="bg-dull/80 w-max mx-auto p-2 rounded-md z-50 text-black border border-black">
+            <p className="bg-dull/90 w-max mx-auto p-2 rounded-md z-50 text-black border-2 border-darkGreen">
               Description and call to action
             </p>
           </div>
         </section>
-        <section>Services</section>
+        <section>
+          <h1>Services</h1>
+        </section>
         <div className="h-[10000px]">Content</div>
       </main>
     </div>
