@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             align="start"
-            className="border-2 border-darkGreen font-medium lg:text-xl rounded-md bg-green"
+            className="border-2 border-darkGreen font-medium lg:text-xl w-20 lg:w-28 rounded-md bg-green"
           >
             <DropdownMenu.Arrow
               className="fill-green w-6 h-4 -mt-1"
@@ -274,7 +274,7 @@ const Home: NextPage = () => {
             Contact Form
           </p>
           <form
-            className="flex flex-col space-y-4 pb-4 w-full px-4 max-w-sm lg:max-w-lg 3xl:max-w-2xl"
+            className="flex flex-col space-y-4 pb-4 w-full px-8 lg:max-w-3xl"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col md:flex-row w-full md:space-x-4 space-y-2 md:space-y-0">
