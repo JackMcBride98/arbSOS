@@ -11,6 +11,9 @@ module.exports = {
         darkGreen: "#00864a",
         dull: "#eeeeee",
       },
+      screens: {
+        "3xl": "1600px",
+      },
     },
   },
   plugins: [],

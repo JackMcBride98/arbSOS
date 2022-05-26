@@ -6,13 +6,23 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import background from "../public/images/treeSurgeon.jpg";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const Home: NextPage = () => {
   const [openDropwdown, setOpenDropdown] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => console.log(data);
 
   useEffect(() => {
     document.addEventListener("scroll", () => setOpenDropdown(false));
   }, []);
+
+  console.log(errors);
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-dull w-full">
@@ -75,7 +85,93 @@ const Home: NextPage = () => {
         <section>
           <h1>Services</h1>
         </section>
-        <div className="h-[10000px]">Content</div>
+        <section className="flex flex-col w-full text-white bg-[#002916] space-y-8 items-center ">
+          <div className="p-4 w-full flex flex-col md:flex-row md:space-x-6 justify-evenly">
+            <TreeSvg className="w-24 h-24 fill-white hidden md:block" />
+            <div className="flex md:block justify-between">
+              <p>
+                <b>Address</b> <br /> 4 The Hill <br />
+                Merrywalks <br /> Stroud <br />
+                GL5 4EP
+              </p>
+              <TreeSvg className="w-24 h-24 fill-white visible md:hidden " />
+            </div>
+
+            <p>
+              <b>Phone</b> <br /> 01234 567890
+            </p>
+            <p>
+              <b>Email</b> <br /> paul@arbsos.co.uk
+            </p>
+          </div>
+          <p className="text-2xl pt-4 border-t px-12 md:px-24 xl:px-36 3xl:px-72">
+            Contact Form
+          </p>
+          <form
+            className="flex flex-col space-y-4 pb-4 w-full px-4 max-w-sm lg:max-w-lg 3xl:max-w-2xl"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex flex-col md:flex-row w-full md:space-x-4 space-y-2 md:space-y-0">
+              <label htmlFor="name" className="">
+                Name*:{" "}
+                <input
+                  type="text"
+                  className="w-full text-black"
+                  {...register("name", { required: "Name is required" })}
+                ></input>
+                {errors.name && (
+                  <p className="text-red-500 font-light">
+                    {errors.name.message}
+                  </p>
+                )}
+              </label>
+              <label htmlFor="email" className="">
+                Email*:{" "}
+                <input
+                  type="text"
+                  className="w-full text-black"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Enter a valid email",
+                    },
+                  })}
+                ></input>
+                {errors.email && (
+                  <p className="text-red-500 font-light">
+                    {errors.email.message}
+                  </p>
+                )}
+              </label>
+              <label htmlFor="phone" className="">
+                Phone:{" "}
+                <input
+                  type="text"
+                  className="w-full text-black"
+                  {...register("phone")}
+                ></input>
+              </label>
+            </div>
+            <label htmlFor="message" className="">
+              Message*:{" "}
+              <textarea
+                className="w-full text-black"
+                {...register("message", { required: "Message is required" })}
+              ></textarea>
+              {errors.message && (
+                <p className="text-red-500 font-light">
+                  {errors.message.message}
+                </p>
+              )}
+            </label>
+            <input
+              type="submit"
+              onClick={(e: any) => e.target?.blur()}
+              className="border-green border w-fit place-self-center p-2 bg-green text-white text-xl hover:scale-110 transition duration-300 focus:scale-90 rounded-md"
+            />
+          </form>
+        </section>
       </main>
     </div>
   );
