@@ -1,15 +1,17 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import TreeSvg from "../public/images/TreeSvg.svg";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import background from "../public/images/treeSurgeon.jpg";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import TreeSvg from '../public/images/TreeSvg.svg';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import background from '../public/images/background.png';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { useState, useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Home: NextPage = () => {
   const [openDropwdown, setOpenDropdown] = useState(false);
+  const aboutRef = useRef<HTMLElement>(null);
+  const servicesRef = useRef<HTMLElement>(null);
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const Home: NextPage = () => {
   const onSubmit = (data: any) => console.log(data);
 
   useEffect(() => {
-    document.addEventListener("scroll", () => setOpenDropdown(false));
+    document.addEventListener('scroll', () => setOpenDropdown(false));
   }, []);
 
   console.log(errors);
@@ -53,11 +55,44 @@ const Home: NextPage = () => {
               className="fill-green w-6 h-4 -mt-1"
               offset={10}
             ></DropdownMenu.Arrow>
-            <DropdownMenu.Item className="p-2 lg:px-4">About</DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 lg:px-4 border-t-2 border-darkGreen">
+            <DropdownMenu.Item
+              className="p-2 lg:px-4 hover:cursor-pointer"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              Home
+            </DropdownMenu.Item>
+            <DropdownMenu.Item
+              className="p-2 lg:px-4 border-t-2 border-darkGreen hover:cursor-pointer"
+              onClick={() => {
+                if (aboutRef.current) {
+                  window.scrollTo({
+                    top: aboutRef.current.offsetTop - 60,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
+            >
+              About
+            </DropdownMenu.Item>
+            <DropdownMenu.Item
+              className="p-2 lg:px-4 border-t-2 border-darkGreen hover:cursor-pointer"
+              onClick={() => {
+                if (servicesRef.current) {
+                  window.scrollTo({
+                    top: servicesRef.current.offsetTop - 50,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
+            >
               Services
             </DropdownMenu.Item>
-            <DropdownMenu.Item className="p-2 lg:px-4 border-t-2 border-darkGreen">
+            <DropdownMenu.Item
+              className="p-2 lg:px-4 border-t-2 border-darkGreen hover:cursor-pointer"
+              onClick={() =>
+                window.scrollTo({ top: 999999, behavior: 'smooth' })
+              }
+            >
               Contact
             </DropdownMenu.Item>
           </DropdownMenu.Content>
@@ -66,26 +101,157 @@ const Home: NextPage = () => {
 
       <main className="w-full flex flex-col items-center">
         <div
-          className="bg-cover bg-no-repeat bg-fixed bg-center w-full min-h-screen"
+          className="bg-cover bg-no-repeat bg-fixed bg-center w-full min-h-screen flex flex-col items-center space-y-24 py-24 "
           style={{ backgroundImage: `url(${background.src})` }}
-        ></div>
-        <section className="bg-black/30 w-[90%] p-4 lg:w-3/4 absolute top-8 mt-16 z-10 border-2 border-darkGreen rounded-lg ">
-          <div className="flex flex-col w-full text-center space-y-4">
-            <div className="flex items-center w-full justify-center">
-              <TreeSvg className="w-16 h-16  md:w-32 md:h-32  fill-green" />
-              <p className="text-green text-6xl md:text-9xl text-center">
-                ArbSOS
+        >
+          <section className="bg-black/30 w-[90%] p-4 lg:w-3/4 z-10 border-2 border-darkGreen rounded-lg">
+            <div className="flex flex-col w-full text-center space-y-4">
+              <div className="flex items-center w-full justify-center">
+                <TreeSvg className="w-16 h-16  md:w-32 md:h-32  fill-green" />
+                <p className="text-green text-6xl md:text-9xl text-center">
+                  ArbSOS
+                </p>
+              </div>
+              <p className="bg-dull/90 mx-auto p-2 rounded-md z-50 text-black border-2 border-darkGreen text-left font-medium">
+                28 year experienced Arb industry professional.
+                <br />
+                Training, tree work, assesments and consultancy.
               </p>
             </div>
-            <p className="bg-dull/90 w-max mx-auto p-2 rounded-md z-50 text-black border-2 border-darkGreen">
-              Description and call to action
-            </p>
-          </div>
-        </section>
-        <section>
-          <h1>Services</h1>
-        </section>
-        <section className="flex flex-col w-full text-white bg-[#002916] space-y-8 items-center ">
+          </section>
+          <section
+            ref={aboutRef}
+            className="z-10 bg-dull w-full p-4 md:px-16 md:w-[90%] lg:w-3/4 md:rounded-md md:border-2 border-darkGreen flex flex-col md:flex-row md:space-x-8 justify-center"
+          >
+            <div className="w-48 h-50">
+              <Image
+                src="/images/paulMcbride.jpeg"
+                alt="Paul McBride"
+                className="rounded-md"
+                width={765}
+                height={1024}
+              />
+            </div>
+            <div className="flex flex-col md:w-3/5">
+              <p className="text-2xl font-medium">Paul McBride</p>
+              <p className="font-light">
+                Hello I’m Paul McBride and I started out in the Arb industry in
+                1994. I have worked for a local authority, been a self employed
+                contractor and a managed Arb Approved Contractor.
+                <br />
+                <br />I was a technical officer at the Arboricultural
+                Association where I became an assessor for the Approved
+                Contractor Scheme, delivered Basic Tree Inspection courses, was
+                involved in the production of the Technical Guides and presented
+                talks at various events.
+                <br />
+                <br />
+                I’d like to think I have learnt a few things over these decades
+                that would be of use to those contractors who are just starting
+                out, and those who have been doing it a while too, I will also
+                say that i’m still learning.
+              </p>
+            </div>
+          </section>
+
+          <section
+            ref={servicesRef}
+            className="w-full flex flex-col p-4 z-10 space-y-4 items-center"
+          >
+            <div className="md:w-[90%] lg:w-3/4 bg-dull pt-4 md:py-4  md:px-4 rounded-lg space-y-2 md:space-y-4 md:border-2 border-darkGreen">
+              <p className="text-4xl font-medium text-center bg-dull">
+                Services
+              </p>
+
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">
+                  Supervisor Development Course
+                </summary>
+                <div className="mt-3">
+                  <p>
+                    A 2 day course developed by Martin Lennon that provides
+                    useful techniques that supervisors and indeed managers can
+                    use to influence behaviour and create a positive safety
+                    culture and encouraging workplace environment. I suggest
+                    that a minimum of 6 delegates attend to get the best out of
+                    the course, to find out when the next course is available
+                    please contact Link to Martin Lennon.
+                  </p>
+                </div>
+              </details>
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">
+                  LOLER (lifting Operations & Lifting Equipment regulations)
+                </summary>
+                <div className="mt-3">
+                  <p>
+                    Thorough examination of Arboricultural Equipment (LOLER)
+                    reports, toolbox talks on equipment checks, quarantine
+                    process, and regular inspection/maintenance record keeping.
+                  </p>
+                </div>
+              </details>
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">Site Audits</summary>
+                <div className="mt-3">
+                  <p>
+                    Site Safety Audits, benchmarking of all site activities
+                    against your policy, procedure and relevant industry
+                    guidance or assessment standards. Relevant sources of
+                    information or Toolbox talks can be provided if
+                    opportunities for improvement are identified.
+                    <br /> <br />
+                    Work Quality Audits, benchmarking of completed works against
+                    tree work specification, BS3998, and tree care practice.
+                    Relevant sources of information or Toolbox talks can be
+                    provided if opportunities for improvement are identified.
+                  </p>
+                </div>
+              </details>
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">
+                  Lantra Basic Tree Inspection
+                </summary>
+                <div className="mt-3">
+                  <p>
+                    Online or face to face options available. Link to AA
+                    Training
+                  </p>
+                </div>
+              </details>
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">
+                  BALI Rolo Operatives site safety course
+                </summary>
+                <div className="mt-3">
+                  <p>
+                    Online or face to face options available. Link to Martin
+                    Lennon/Bali
+                  </p>
+                </div>
+              </details>
+              <details className="p-4 rounded-lg open:bg-white open:shadow-xl">
+                <summary className="font-medium">
+                  Approved Contractor Scheme
+                </summary>
+                <div className="mt-3">
+                  <p>
+                    Link to AA site, standards I would suggest that if you are
+                    considering becoming a scheme member have attended a pre
+                    workshop, read through the standard and believe the
+                    supporting evidence is in place, then being formally
+                    assessed is your best route. So book your assessment visit
+                    direct through the AA. If you are still not sure, i can
+                    support you through the process, it is an achievable
+                    standard.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </section>
+        </div>
+
+        <section className="flex flex-col w-full text-white bg-[#002916] space-y-8 items-center z-10">
           <div className="p-4 w-full flex flex-col md:flex-row md:space-x-6 justify-evenly">
             <TreeSvg className="w-24 h-24 fill-white hidden md:block" />
             <div className="flex md:block justify-between">
@@ -113,11 +279,11 @@ const Home: NextPage = () => {
           >
             <div className="flex flex-col md:flex-row w-full md:space-x-4 space-y-2 md:space-y-0">
               <label htmlFor="name" className="">
-                Name*:{" "}
+                Name*:{' '}
                 <input
                   type="text"
                   className="w-full text-black"
-                  {...register("name", { required: "Name is required" })}
+                  {...register('name', { required: 'Name is required' })}
                 ></input>
                 {errors.name && (
                   <p className="text-red-500 font-light">
@@ -126,15 +292,15 @@ const Home: NextPage = () => {
                 )}
               </label>
               <label htmlFor="email" className="">
-                Email*:{" "}
+                Email*:{' '}
                 <input
                   type="text"
                   className="w-full text-black"
-                  {...register("email", {
-                    required: "Email is required",
+                  {...register('email', {
+                    required: 'Email is required',
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Enter a valid email",
+                      message: 'Enter a valid email',
                     },
                   })}
                 ></input>
@@ -145,19 +311,19 @@ const Home: NextPage = () => {
                 )}
               </label>
               <label htmlFor="phone" className="">
-                Phone:{" "}
+                Phone:{' '}
                 <input
                   type="text"
                   className="w-full text-black"
-                  {...register("phone")}
+                  {...register('phone')}
                 ></input>
               </label>
             </div>
             <label htmlFor="message" className="">
-              Message*:{" "}
+              Message*:{' '}
               <textarea
                 className="w-full text-black"
-                {...register("message", { required: "Message is required" })}
+                {...register('message', { required: 'Message is required' })}
               ></textarea>
               {errors.message && (
                 <p className="text-red-500 font-light">
