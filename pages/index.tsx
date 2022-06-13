@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             align="start"
-            className="border-2 border-darkGreen font-medium lg:text-xl rounded-md bg-green"
+            className="border-2 border-darkGreen font-medium lg:text-xl w-20 lg:w-28 rounded-md bg-green"
           >
             <DropdownMenu.Arrow
               className="fill-green w-6 h-4 -mt-1"
@@ -158,7 +158,7 @@ const Home: NextPage = () => {
             ref={servicesRef}
             className="w-full flex flex-col p-4 z-10 space-y-4 items-center"
           >
-            <div className="md:w-[90%] lg:w-3/4 bg-dull pt-4 md:py-4  md:px-4 rounded-lg space-y-2 md:space-y-4 md:border-2 border-darkGreen">
+            <div className="md:w-[90%] w-full  lg:w-3/4 bg-dull pt-4 md:py-4  md:px-4 rounded-lg space-y-2 md:space-y-4 md:border-2 border-darkGreen">
               <p className="text-4xl font-medium text-center bg-dull">
                 Services
               </p>
@@ -175,7 +175,15 @@ const Home: NextPage = () => {
                     culture and encouraging workplace environment. I suggest
                     that a minimum of 6 delegates attend to get the best out of
                     the course, to find out when the next course is available
-                    please contact Link to Martin Lennon.
+                    please visit{' '}
+                    <a
+                      href="http://www.arb-forestry.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-linkGreen underline break-all"
+                    >
+                      http://www.arb-forestry.com/
+                    </a>
                   </p>
                 </div>
               </details>
@@ -214,8 +222,15 @@ const Home: NextPage = () => {
                 </summary>
                 <div className="mt-3">
                   <p>
-                    Online or face to face options available. Link to AA
-                    Training
+                    Online or face to face options available.{' '}
+                    <a
+                      href="https://trees.org.uk/Training-Events/Bespoke-Courses"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-linkGreen underline break-all"
+                    >
+                      https://trees.org.uk/Training-Events/Bespoke-Courses
+                    </a>
                   </p>
                 </div>
               </details>
@@ -225,8 +240,15 @@ const Home: NextPage = () => {
                 </summary>
                 <div className="mt-3">
                   <p>
-                    Online or face to face options available. Link to Martin
-                    Lennon/Bali
+                    Online or face to face options available.{' '}
+                    <a
+                      href="https://www.bali.org.uk/events/training-courses/?p=2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-linkGreen underline break-all"
+                    >
+                      https://www.bali.org.uk/events/training-courses/?p=2
+                    </a>
                   </p>
                 </div>
               </details>
@@ -235,15 +257,23 @@ const Home: NextPage = () => {
                   Approved Contractor Scheme
                 </summary>
                 <div className="mt-3">
+                  <a
+                    href="https://trees.org.uk/Accreditation/Become-an-ARB-Approved-Contractor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-linkGreen underline break-all"
+                  >
+                    https://trees.org.uk/Accreditation/Become-an-ARB-Approved-Contractor
+                  </a>
+                  <br />
                   <p>
-                    Link to AA site, standards I would suggest that if you are
-                    considering becoming a scheme member have attended a pre
-                    workshop, read through the standard and believe the
-                    supporting evidence is in place, then being formally
-                    assessed is your best route. So book your assessment visit
-                    direct through the AA. If you are still not sure, i can
-                    support you through the process, it is an achievable
-                    standard.
+                    I would suggest that if you are considering becoming a
+                    scheme member to have attended a pre workshop, read through
+                    the standard and believe the supporting evidence is in
+                    place, then being formally assessed is your best route. So
+                    book your assessment visit direct through the AA. If you are
+                    still not sure, I can support you through the process, it is
+                    an achievable standard.
                   </p>
                 </div>
               </details>
@@ -274,7 +304,7 @@ const Home: NextPage = () => {
             Contact Form
           </p>
           <form
-            className="flex flex-col space-y-4 pb-4 w-full px-4 max-w-sm lg:max-w-lg 3xl:max-w-2xl"
+            className="flex flex-col space-y-4 pb-4 w-full px-8 lg:max-w-3xl"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col md:flex-row w-full md:space-x-4 space-y-2 md:space-y-0">
