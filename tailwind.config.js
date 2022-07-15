@@ -15,6 +15,9 @@ module.exports = {
       screens: {
         '3xl': '1600px',
       },
+      fontFamily: {
+        blackOps: ['Black Ops One', 'cursive'],
+      },
     },
   },
   plugins: [],
