@@ -112,7 +112,7 @@ const Home: NextPage = () => {
                 </p>
                 <p className="text-green text-6xl md:text-9xl text-center flex items-center font-blackOps">
                   S
-                  <Crosshair className="w-24 h-24 md:w-44 md:h-44 fill-green -mx-6 md:-mx-9 md:mt-2" />
+                  <Crosshair className="w-24 h-24 md:w-44 md:h-44 fill-green -mx-6 md:-mx-9" />
                   S
                 </p>
               </div>
