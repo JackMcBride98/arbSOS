@@ -19,7 +19,13 @@ const Home: NextPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    const res = await fetch('/api/contactForm', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+    console.log(res, data);
+  };
 
   useEffect(() => {
     document.addEventListener('scroll', () => setOpenDropdown(false));
@@ -325,7 +331,9 @@ const Home: NextPage = () => {
               <label htmlFor="phone" className="">
                 Phone:{' '}
                 <input
+                  inputMode="numeric"
                   type="text"
+                  pattern="[0-9]*"
                   className="w-full text-black"
                   {...register('phone')}
                 ></input>
