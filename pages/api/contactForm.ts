@@ -3,8 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import mail from '@sendgrid/mail';
 mail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
-console.log(process.env.SENDGRID_API_KEY);
-
 type Data = {
   status: string;
 };
@@ -24,15 +22,17 @@ export default function handler(
     mail
       .send({
         to: 'paul@arbsos.co.uk',
-        from: body.email,
-        subject: 'New Message!',
+        from: 'paul@arbsos.co.uk',
+        subject: 'Contact Form Submission',
         text: message,
         html: message.replace(/rn/g, '<br>'),
       })
       .then(() => {
-        res.status(200).json({ status: 'Ok' });
+        return res.status(200).end();
       });
-  } catch (error) {
+  } catch (error: unknown) {
     console.log(error);
+    return res.status(400).send({ status: 'Error' });
   }
+  res.end();
 }

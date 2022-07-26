@@ -23,8 +23,9 @@ const Home: NextPage = () => {
     const res = await fetch('/api/contactForm', {
       method: 'POST',
       body: JSON.stringify(data),
-    }).then((res) => res.json());
-    console.log(res, data);
+    });
+    if (res.status === 200) {
+    }
   };
 
   useEffect(() => {
@@ -342,7 +343,7 @@ const Home: NextPage = () => {
             <label htmlFor="message" className="">
               Message*:{' '}
               <textarea
-                className="w-full text-black"
+                className="w-full h-[25vh] text-black"
                 {...register('message', { required: 'Message is required' })}
               ></textarea>
               {errors.message && (
