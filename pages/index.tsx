@@ -8,6 +8,7 @@ import background from '../public/images/background.webp';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import * as ga from '../lib/ga';
 
 const Home: NextPage = () => {
   const [openDropwdown, setOpenDropdown] = useState(false);
@@ -21,6 +22,15 @@ const Home: NextPage = () => {
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    ga.event({
+      action: 'submit form',
+      params: {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        phone: data.phone,
+      },
+    });
     const res = await fetch('/api/contactForm', {
       method: 'POST',
       body: JSON.stringify(data),
