@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Black Ops One';
   src: url('../public/fonts/BlackOpsOne-Regular.ttf');
+  font-display: swap;
 }
 
 @tailwind base;

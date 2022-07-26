@@ -4,7 +4,7 @@ import Image from 'next/image';
 import TreeSvg from '../public/images/TreeSvg.svg';
 import Crosshair from '../public/images/Crosshair.svg';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import background from '../public/images/background.png';
+import background from '../public/images/background.webp';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -141,11 +141,12 @@ const Home: NextPage = () => {
             ref={aboutRef}
             className="z-10 bg-dull w-full p-4 md:px-16 md:w-[90%] lg:w-3/4 md:rounded-md md:border-2 border-darkGreen flex flex-col md:flex-row md:space-x-8 justify-center"
           >
-            <div className="w-48 h-50">
+            <div className="w-48 h-50 block">
               <Image
-                src="/images/paulMcbride.jpeg"
+                src="/images/paulMcbride.webp"
                 alt="Paul McBride"
                 className="rounded-md"
+                layout="responsive"
                 width={765}
                 height={1024}
               />
