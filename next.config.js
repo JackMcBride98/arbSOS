@@ -15,7 +15,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/fonts/inter-var.woff2',
+        source: '/fonts/BlackOpsOne-Regular.ttf',
         headers: [
           {
             key: 'Cache-control',
@@ -24,6 +24,10 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
   },
 };
 

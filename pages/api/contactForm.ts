@@ -23,7 +23,7 @@ export default function handler(
       .send({
         to: 'paul@arbsos.co.uk',
         from: 'paul@arbsos.co.uk',
-        subject: 'Contact Form Submission',
+        subject: `Contact Form Submission from ${body.name}`,
         text: message,
         html: message.replace(/rn/g, '<br>'),
       })

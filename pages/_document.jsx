@@ -10,7 +10,7 @@ class MyDocument extends Document {
             href="/fonts/BlackOpsOne-Regular.ttf"
             as="font"
             type="font/ttf"
-            crossOrigin="anonymous"
+            crossOrigin=""
           />
         </Head>
         <body>
