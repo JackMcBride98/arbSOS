@@ -57,7 +57,7 @@ const Home: NextPage = () => {
           open={openDropwdown}
           onOpenChange={() => setOpenDropdown(!openDropwdown)}
         >
-          <DropdownMenu.Trigger>
+          <DropdownMenu.Trigger aria-label="Dropdown Menu">
             <HamburgerMenuIcon className="w-8 h-8" />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
@@ -147,8 +147,8 @@ const Home: NextPage = () => {
                 alt="Paul McBride"
                 className="rounded-md"
                 layout="responsive"
-                width={765}
-                height={1024}
+                width={255}
+                height={338}
               />
             </div>
             <div className="flex flex-col md:w-3/5">
