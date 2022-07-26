@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 
 const Home: NextPage = () => {
   const [openDropwdown, setOpenDropdown] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   const aboutRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
   const {
@@ -19,7 +20,19 @@ const Home: NextPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    const res = await fetch('/api/contactForm', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+    if (res.status === 200) {
+      setSubmitMessage('Message sent successfully');
+      setTimeout(() => setSubmitMessage(''), 3500);
+      return;
+    }
+    setSubmitMessage('Message failed to send');
+    setTimeout(() => setSubmitMessage(''), 3500);
+  };
 
   useEffect(() => {
     document.addEventListener('scroll', () => setOpenDropdown(false));
@@ -325,7 +338,9 @@ const Home: NextPage = () => {
               <label htmlFor="phone" className="">
                 Phone:{' '}
                 <input
+                  inputMode="numeric"
                   type="text"
+                  pattern="[0-9]*"
                   className="w-full text-black"
                   {...register('phone')}
                 ></input>
@@ -334,7 +349,7 @@ const Home: NextPage = () => {
             <label htmlFor="message" className="">
               Message*:{' '}
               <textarea
-                className="w-full text-black"
+                className="w-full h-[25vh] text-black"
                 {...register('message', { required: 'Message is required' })}
               ></textarea>
               {errors.message && (
@@ -343,6 +358,9 @@ const Home: NextPage = () => {
                 </p>
               )}
             </label>
+            {submitMessage && (
+              <p className="italic font-medium">{submitMessage}</p>
+            )}
             <input
               type="submit"
               onClick={(e: any) => e.target?.blur()}
