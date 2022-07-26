@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 
 const Home: NextPage = () => {
   const [openDropwdown, setOpenDropdown] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   const aboutRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
   const {
@@ -25,7 +26,12 @@ const Home: NextPage = () => {
       body: JSON.stringify(data),
     });
     if (res.status === 200) {
+      setSubmitMessage('Message sent successfully');
+      setTimeout(() => setSubmitMessage(''), 3500);
+      return;
     }
+    setSubmitMessage('Message failed to send');
+    setTimeout(() => setSubmitMessage(''), 3500);
   };
 
   useEffect(() => {
@@ -352,6 +358,9 @@ const Home: NextPage = () => {
                 </p>
               )}
             </label>
+            {submitMessage && (
+              <p className="italic font-medium">{submitMessage}</p>
+            )}
             <input
               type="submit"
               onClick={(e: any) => e.target?.blur()}
