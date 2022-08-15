@@ -371,7 +371,7 @@ const Home: NextPage = () => {
               )}
             </label>
             {submitMessage && (
-              <p className="italic font-medium">{submitMessage}</p>
+              <p className="italic font-medium text-center">{submitMessage}</p>
             )}
             <input
               type="submit"

@@ -3,13 +3,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import mail from '@sendgrid/mail';
 mail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
-type Data = {
-  status: string;
-};
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   const body = JSON.parse(req.body);
   const message = `
@@ -19,20 +15,17 @@ export default function handler(
   Message: ${body.message}
 `;
   try {
-    mail
-      .send({
-        to: 'paul@arbsos.co.uk',
-        from: 'paul@arbsos.co.uk',
-        subject: `Contact Form Submission from ${body.name}`,
-        text: message,
-        html: message.replace(/rn/g, '<br>'),
-      })
-      .then(() => {
-        return res.status(200).end();
-      });
-  } catch (error: unknown) {
-    console.log(error);
-    return res.status(400).send({ status: 'Error' });
+    await mail.send({
+      to: 'paul@arbsos.co.uk',
+      from: 'paul@arbsos.co.uk',
+      subject: `Contact Form Submission from ${body.name}`,
+      text: message,
+      html: message.replace(/rn/g, '<br>'),
+    });
+  } catch (error: any) {
+    return res
+      .status(error?.statusCode || 500)
+      .json({ error: error?.message || 'An error occurred' });
   }
-  res.end();
+  return res.status(200).json({ error: '' });
 }
