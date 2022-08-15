@@ -45,6 +45,7 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
+    ga.pageview('/');
     document.addEventListener('scroll', () => setOpenDropdown(false));
   }, []);
 
