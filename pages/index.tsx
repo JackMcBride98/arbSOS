@@ -18,19 +18,11 @@ const Home: NextPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    ga.event({
-      action: 'submit_form',
-      params: {
-        name: data.name,
-        email: data.email,
-        message: data.message,
-        phone: data.phone,
-      },
-    });
     const res = await fetch('/api/contactForm', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -375,7 +367,13 @@ const Home: NextPage = () => {
             )}
             <input
               type="submit"
-              onClick={(e: any) => e.target?.blur()}
+              onClick={(e: any) => {
+                ga.event({
+                  action: 'submit_form',
+                  params: getValues(),
+                });
+                e.target?.blur();
+              }}
               className="border-green border w-fit place-self-center p-2 bg-green text-white text-xl hover:scale-110 transition duration-300 focus:scale-90 rounded-md"
             />
           </form>
