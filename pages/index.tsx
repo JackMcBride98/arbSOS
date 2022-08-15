@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
   const onSubmit = async (data: any) => {
     ga.event({
-      action: 'submit form',
+      action: 'submit_form',
       params: {
         name: data.name,
         email: data.email,
@@ -45,7 +45,6 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    ga.pageview('/');
     document.addEventListener('scroll', () => setOpenDropdown(false));
   }, []);
 
