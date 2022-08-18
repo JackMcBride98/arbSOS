@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         <title className="font-blackOps">ARBSOS</title>
         <meta
           name="description"
-          content="ARBSOS - Help for Arboricultural Contractors"
+          content="Help for Arboricultural Contractors. Arboricultural consultancy based in Stroud, UK. Paul McBride is a qualified arboricultural consultant with a wide range of experience in the arb industry."
         />
         <link rel="icon" href="/images/TreeSvg.svg" />
       </Head>
