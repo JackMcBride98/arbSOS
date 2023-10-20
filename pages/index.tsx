@@ -143,7 +143,7 @@ const Home: NextPage = () => {
 							</p>
 							<div>
 								<Image
-									src="/images/lantra-transparent.png"
+									src="/images/lantra-transparent.webp"
 									alt="Lantra"
 									width={200}
 									height={200}
@@ -248,7 +248,7 @@ const Home: NextPage = () => {
 								</p>
 								<div className="w-full flex justify-center">
 									<Image
-										src="/images/lantra.jpg"
+										src="/images/lantra.webp"
 										alt="Lantra"
 										width={200}
 										height={200}
