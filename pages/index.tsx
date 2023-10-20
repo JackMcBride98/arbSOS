@@ -141,6 +141,15 @@ const Home: NextPage = () => {
 								Offering services in training, tree work, assesments and
 								consultancy.
 							</p>
+							<div>
+								<Image
+									src="/images/lantra-transparent.png"
+									alt="Lantra"
+									width={200}
+									height={200}
+									layout="fixed"
+								/>
+							</div>
 						</div>
 					</section>
 					<section
@@ -226,7 +235,7 @@ const Home: NextPage = () => {
 								</p>
 							</Accordion>
 							<Accordion title="Lantra Training">
-								<p>
+								<p className="mb-2">
 									Visit the Lantra website for more information{' '}
 									<a
 										href="https://www.lantra.co.uk/course/basic-tree-survey-and-inspection"
@@ -237,6 +246,15 @@ const Home: NextPage = () => {
 										https://www.lantra.co.uk/course/basic-tree-survey-and-inspection
 									</a>
 								</p>
+								<div className="w-full flex justify-center">
+									<Image
+										src="/images/lantra.jpg"
+										alt="Lantra"
+										width={200}
+										height={200}
+										layout="fixed"
+									/>
+								</div>
 							</Accordion>
 							<Accordion title="Approved Contractor Scheme">
 								<a
